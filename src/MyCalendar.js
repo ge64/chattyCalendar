@@ -6,6 +6,13 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 const localizer = momentLocalizer(moment);
 
 const MyCalendar = ({ events }) => {
+    // Convert event dates from string to Date objects
+    const convertedEvents = events.map(event => ({
+        ...event,
+        start: new Date(event.start),
+        end: new Date(event.end),
+    }));
+
     const eventPropGetter = (event, start, end, isSelected) => {
         let newStyle = {
             color: 'white',
@@ -30,7 +37,7 @@ const MyCalendar = ({ events }) => {
         <div>
             <Calendar
                 localizer={localizer}
-                events={events}
+                events={convertedEvents} // Use converted events here
                 startAccessor="start"
                 endAccessor="end"
                 style={{ height: 500 }}
