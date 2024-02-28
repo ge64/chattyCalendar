@@ -8,16 +8,16 @@ const localizer = momentLocalizer(moment);
 const MyCalendar = ({ events }) => {
     const eventPropGetter = (event, start, end, isSelected) => {
         let newStyle = {
-            backgroundColor: "lightblue", // Default color
             color: 'white',
             borderRadius: "0px",
             border: "none"
         };
 
-        if (event.title === 'Big Meeting') {
-            newStyle.backgroundColor = "blue";
-        } else if (event.title === 'Vacation') {
-            newStyle.backgroundColor = "yellow";
+        // Change color based on the event's approval status
+        if (event.isApproved) {
+            newStyle.backgroundColor = "#006600"; // Color for approved events
+        } else {
+            newStyle.backgroundColor = "#efc310"; // Color for unapproved events
         }
 
         return {
